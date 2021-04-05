@@ -38,4 +38,9 @@ public class CategoriaService {
 		}
 		return lista;
 	}
+
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }
