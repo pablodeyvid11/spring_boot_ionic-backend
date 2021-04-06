@@ -25,7 +25,7 @@ public class CategoriaService {
 		if (opional.orElse(null) != null) {
 			Hibernate.initialize(opional.orElse(null).getProdutos());
 		}
-		
+
 		return opional.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
@@ -41,6 +41,17 @@ public class CategoriaService {
 
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+
+	public Categoria update(Categoria obj) {
+		try {
+			findById(obj.getId());
+		} catch (ObjectNotFoundException e) {
+			throw e;
+		} catch (Exception e) {
+		}
+
 		return repo.save(obj);
 	}
 }

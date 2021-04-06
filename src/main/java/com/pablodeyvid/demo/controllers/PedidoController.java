@@ -19,13 +19,13 @@ public class PedidoController {
 	private PedidoService service;
 
 	@GetMapping
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity<List<Pedido>> getAll() {
 		List<Pedido> lista = service.getAll();
 		return ResponseEntity.ok().body(lista);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Pedido> findById(@PathVariable Integer id) {
 		Pedido ped = service.findById(id);
 		return ResponseEntity.ok().body(ped);
 	}
